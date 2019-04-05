@@ -1,6 +1,6 @@
 
 #include <pthread.h>
-#include <stdio.h>
+
 #include <iostream>
 #include <sys/types.h>
 #include <Windows.h>
