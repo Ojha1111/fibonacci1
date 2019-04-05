@@ -1,6 +1,5 @@
 
 #include <pthread.h>
-
 #include <iostream>
 #include <sys/types.h>
 #include <Windows.h>
@@ -18,11 +17,10 @@ void parent(int* values);
 	pthread_attr_t attr; 
 	pthread_attr_init(&attr); 
 
-	parent(&values); // get user input then start separate thread.
-	pthread_create(&child, &attr, fibonacci_thread, (void*) &values); //starts fibonacci thread
-	pthread_join(child, NULL); //waits for thread to finish
+	parent(&values); 
+	pthread_create(&child, &attr, fibonacci_thread, (void*) &values); 
+	pthread_join(child, NULL);
 
-	//output to command prompt after thread finishes.
 	for(int i = 0; i <= shared_data[i]; i++) {
 		printf("%d",shared_data[i]);
 	}
@@ -34,7 +32,7 @@ void *fibonacci_thread(void* fun) {
 	
 	int fib0 = 0, fib1 = 1, next = 0;
 	int *pointer;
-	pointer = (int*) params;
+	pointer = (int*) fun1;
 	int total = *pointer;
 	
 	for (int i = 0 ; i < total; i++ ) {
@@ -45,19 +43,19 @@ void *fibonacci_thread(void* fun) {
          fib0 = fib1;
          fib1 = next;
       }
-	  next = shared_data[i]; //store to shared_data array
+	  next = shared_data[i]; 
 	}
-	//pthread_exit(0);
+	pthread_exit(0);
 	return NULL;
 }
 
-void parent(int* numbers) {
+void parent(int* values) {
 	std::cout<<"Enter in a number to generate the Fibonacci sequence: ";
-	std::cin>>*numbers;
+	std::cin>>*values;
 
-	while(isdigit(*numbers) != true) {
-		std::cout<<"Invalid character, please enter in a number: ";
-		std::cin>>*numbers;
+	while(isdigit(*values) != true) {
+		std::cout<<"Invalid character, please enter in a values: ";
+		std::cin>>*values;
 	}
 
 	return;
