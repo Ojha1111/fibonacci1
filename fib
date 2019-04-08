@@ -3,7 +3,6 @@
 #include <iostream>
 #include <sys/types.h>
 #include <Windows.h>
-
 int shared_data[100];
 
 void *fibonacci_thread(void* fun);
